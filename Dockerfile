@@ -1,9 +1,17 @@
-FROM nginx:alpine
+# Use the official Python image as a base image
+FROM python:3.9-slim
 
-RUN apk add --no-cache git python3 py3-pip && pip3 install Flask && git clone https://github.com/natachikhinashvili/forjenkins.git
+# Set the working directory in the container
+WORKDIR /app
 
-WORKDIR /forjenkins
+# Copy the current directory contents into the container at /app
+COPY . .
 
+# Install Flask
+RUN pip install --no-cache-dir Flask
+
+# Expose port 5000 to the outside world
 EXPOSE 5000
 
-CMD python3 index.py
+# Run the Flask application
+CMD ["python3", "index.py", "--host=0.0.0.0"]
