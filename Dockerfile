@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --no-cache-dir Flask
 
 # Expose port 5000 to the outside world
-EXPOSE 5000
+EXPOSE 5002
 
 # Run the Flask application
 CMD ["python3", "index.py", "--host=0.0.0.0"]
